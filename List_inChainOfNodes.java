@@ -13,13 +13,13 @@ public class List_inChainOfNodes{
       @return the number of elements in this list
      */
     public int size() {
-        int result = 0;
-        Node currentNode = headReference;
-        while (currentNode != null){
-            currentNode = currentNode.getReferenceToNextNode();
-            result++;
+        int size = 0;
+        Node node = headReference;
+        while (node != null){
+            node = node.getReferenceToNextNode();
+            size++;
         }
-        return result;
+        return size;
     }
 
     
@@ -30,10 +30,8 @@ public class List_inChainOfNodes{
       */
     public String toString() {
         String result = size() + " elements [";
-        Node currentNode = headReference;
-        for (int counter = 0;counter < size(); counter++){
-            result += currentNode.getCargoReference() + ",";
-            currentNode = currentNode.getReferenceToNextNode();
+        for (Node node = headReference; node != null; node = node.getReferenceToNextNode()){
+            result += node.getCargoReference() + ",";
         }
         return result + "]";
     }
