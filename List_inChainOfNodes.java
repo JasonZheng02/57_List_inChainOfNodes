@@ -21,7 +21,6 @@ public class List_inChainOfNodes{
         }
         return size;
     }
-
     
      /**
        @return a string representation of this list,
@@ -36,7 +35,6 @@ public class List_inChainOfNodes{
         return result + "]";
     }
     
-    
     /**
       Append @value to the head of this list.
 
@@ -45,5 +43,27 @@ public class List_inChainOfNodes{
     public boolean addAsHead( Object val) {
         headReference = new Node(val,headReference);
         return true;
+    }
+    
+    public Object get(int index){
+        Node node = headReference;
+        for (int counter = 0; counter <= index; counter++){
+            if (index == counter) {
+                return node.getCargoReference();
+            }
+            node = node.getReferenceToNextNode();
+        }
+        return null;
+    }
+    
+    public Object set(int index, int newValue){
+        Node node = headReference;
+        for (int counter = 0; counter <= index; counter++){
+            if (index == counter) {
+                node.setCargoReference(newValue);
+            }
+            node = node.getReferenceToNextNode();
+        }
+        return null;
     }
 }
