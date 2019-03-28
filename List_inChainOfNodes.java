@@ -45,25 +45,48 @@ public class List_inChainOfNodes{
         return true;
     }
     
-    public Object get(int index){
-        Node node = headReference;
-        for (int counter = 0; counter <= index; counter++){
-            if (index == counter) {
-                return node.getCargoReference();
-            }
-            node = node.getReferenceToNextNode();
-        }
-        return null;
+    public Node iteration(int index){
+        Node node;
+        int counter;
+        for (counter = 0, node = headReference; 
+             counter < index;
+             counter++, node = node.getReferenceToNextNode()){
+             }
+        return node;
     }
     
-    public Object set(int index, int newValue){
-        Node node = headReference;
-        for (int counter = 0; counter <= index; counter++){
-            if (index == counter) {
-                node.setCargoReference(newValue);
-            }
-            node = node.getReferenceToNextNode();
+    public Object get(int index){ 
+        return iteration(index).getCargoReference();
+    }
+    
+    public Object set(int index, Object newValue){
+        Object oldCargo;
+        oldCargo = iteration(index).getCargoReference();
+        iteration(index).setCargoReference(newValue);
+        return oldCargo;
+    }
+    
+    public boolean add(int index, Object val) {
+        if (index == 0) {
+            addAsHead(val);
+        } 
+        else {
+            iteration(index - 1).setReferenceToNextNode( new Node(val,iteration(index)));
         }
-        return null;
+        return true;
+    }
+    
+    public boolean remove(int index){
+        if (index == 0) {
+            headReference = headReference.getReferenceToNextNode();
+        }
+        else {
+            iteration(index - 1).setReferenceToNextNode(iteration(index + 1));
+        }
+        return true;
     }
 }
+
+
+
+
